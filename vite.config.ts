@@ -7,9 +7,20 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8080',
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
-        secure: false,
+      }
+    }
+  },
+  // Ensure all routes fallback to index.html for client-side routing
+  preview: {
+    port: 4173,
+    strictPort: false,
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
       }
     }
   }

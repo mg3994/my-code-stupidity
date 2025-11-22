@@ -1,47 +1,95 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { onMount } from "svelte";
+  import { locale, isLoading } from "svelte-i18n";
+  import { isRTL } from "./lib/i18n"; // Use helper
+  import { theme } from "./lib/stores/theme";
+  import { user } from "./lib/stores/user";
+
+  import Router from "./lib/Router.svelte";
+  import Header from "./lib/components/Header.svelte";
+  import Landing from "./routes/Landing.svelte";
+  import Auth from "./routes/Auth.svelte";
+  import Booking from "./routes/Booking.svelte";
+
+  const routes = {
+    "/": Landing,
+    "/auth": Auth,
+    "/book": Booking,
+  };
+
+  onMount(() => {
+    user.init();
+  });
+
+  // Handle Direction (RTL/LTR)
+  $: {
+    if ($locale) {
+      const dir = isRTL($locale) ? "rtl" : "ltr";
+      document.documentElement.dir = dir;
+      document.documentElement.lang = $locale;
+    }
+  }
+
+  // Handle Theme
+  $: {
+    const root = document.documentElement;
+
+    // Mode
+    if ($theme.mode === "system") {
+      const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      root.setAttribute("data-theme", systemDark ? "dark" : "light");
+    } else {
+      root.setAttribute("data-theme", $theme.mode);
+    }
+
+    // Dynamic Color
+    root.style.setProperty("--primary-hue", $theme.primaryHue.toString());
+  }
 </script>
 
-<main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+{#if $isLoading}
+  <div class="loading-screen flex-center">
+    <div class="spinner"></div>
   </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
+{:else}
+  <main>
+    <Header />
+    <div class="content-wrapper">
+      <Router {routes} />
+    </div>
+  </main>
+{/if}
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  main {
+    width: 100%;
+    min-height: 100vh;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .content-wrapper {
+    padding-top: 64px; /* Header height */
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+
+  .loading-screen {
+    height: 100vh;
+    width: 100vw;
+    background: var(--color-bg);
   }
-  .read-the-docs {
-    color: #888;
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--color-primary);
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>

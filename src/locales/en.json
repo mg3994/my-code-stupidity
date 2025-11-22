@@ -1,0 +1,68 @@
+{
+    "app": {
+        "title": "LinkWithMentor"
+    },
+    "nav": {
+        "home": "Home",
+        "auth": "Sign In",
+        "book": "Book Session"
+    },
+    "hero": {
+        "title": "Find Your Perfect",
+        "title_highlight": "Mentor",
+        "subtitle": "Connect with industry experts, master new skills, and accelerate your career growth with personalized 1-on-1 sessions.",
+        "cta_primary": "Get Started",
+        "cta_secondary": "Browse Mentors"
+    },
+    "features": {
+        "title": "Why Choose Us?",
+        "expert": {
+            "title": "Expert Guidance",
+            "desc": "Learn from seniors at top tech companies who have been in your shoes."
+        },
+        "schedule": {
+            "title": "Flexible Scheduling",
+            "desc": "Book sessions that fit your calendar. Reschedule easily when life happens."
+        },
+        "feedback": {
+            "title": "Real Feedback",
+            "desc": "Get actionable advice on your code, resume, or career path instantly."
+        }
+    },
+    "auth": {
+        "signin_title": "Welcome Back",
+        "signup_title": "Create Account",
+        "signin_subtitle": "Sign in to continue your journey",
+        "signup_subtitle": "Join our community of learners",
+        "name_label": "Full Name",
+        "email_label": "Email Address",
+        "password_label": "Password",
+        "submit_signin": "Sign In",
+        "submit_signup": "Sign Up",
+        "processing": "Processing...",
+        "have_account": "Already have an account?",
+        "no_account": "Don't have an account?"
+    },
+    "booking": {
+        "title": "Book a Session",
+        "step": "Step {current} of {total}",
+        "select_mentor": "Select a Mentor",
+        "pick_date": "Pick a Date",
+        "pick_time": "Pick a Time",
+        "confirm": "Confirm Booking",
+        "mentor_label": "Mentor",
+        "date_label": "Date",
+        "time_label": "Time",
+        "continue": "Continue",
+        "back": "Back",
+        "confirm_btn": "Confirm Booking",
+        "select_btn": "Select"
+    },
+    "settings": {
+        "language": "Language",
+        "theme": "Theme",
+        "color": "Color",
+        "country": "Country",
+        "currency": "Currency"
+    }
+}
