@@ -1,32 +1,3 @@
-        <button
-            class="settings-trigger"
-            on:click={openSettings}
-            aria-label="Open Settings"
-        >
-            <span class="settings-icon">⚙️</span>
-            <span class="settings-text">Settings</span>
-        </button>
-    </div>
-</header>
-
-<!-- Settings Modal Dialog -->
-<dialog
-    bind:this={dialog}
-    class="settings-dialog"
-    on:click={handleBackdropClick}
->
-    <div class="dialog-content glass-panel">
-        <div class="dialog-header">
-            <h2>Settings</h2>
-            <button
-                class="close-btn"
-                on:click={closeSettings}
-                aria-label="Close">✕</button
-            >
-        </div>
-
-        <div class="dialog-body">
-            <!-- Language -->
             <section class="setting-section">
                 <h3>🌐 {$t("settings.language")}</h3>
                 <select

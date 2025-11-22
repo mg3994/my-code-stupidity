@@ -6,7 +6,7 @@
   import { user } from "./lib/stores/user";
 
   import Router from "./lib/Router.svelte";
-  import Header from "./lib/components/Header.svelte";
+  import Drawer from "./lib/components/Drawer.svelte";
   import Landing from "./routes/Landing.svelte";
   import Auth from "./routes/Auth.svelte";
   import Booking from "./routes/Booking.svelte";
@@ -56,9 +56,7 @@
 {:else}
   <main>
     <Header />
-    <div class="content-wrapper">
-      <Router {routes} />
-    </div>
+    <Drawer />
   </main>
 {/if}
 
